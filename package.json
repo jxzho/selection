@@ -1,5 +1,5 @@
 {
-  "name": "@rj/selection",
+  "name": "@rjdev/selection",
   "author": "Russell Xio <junxio220@gmail.com>",
   "packageManager": "pnpm@9.6.0",
   "version": "0.0.0-alpha.1",
@@ -48,9 +48,14 @@
   "engines": {
     "node": ">=18.20.3"
   },
-  "homepage": "https://github.com/jxzho/selection",
+  "homepage": "https://github.com/jxzho/selection#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jxzho/selection.git"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
