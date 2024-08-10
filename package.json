@@ -47,5 +47,10 @@
   "sideEffects": false,
   "engines": {
     "node": ">=18.20.3"
+  },
+  "homepage": "https://github.com/jxzho/selection",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxzho/selection.git"
   }
 }
