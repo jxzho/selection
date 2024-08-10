@@ -1,0 +1,51 @@
+{
+  "name": "@rj/selection",
+  "author": "Russell Xio <junxio220@gmail.com>",
+  "packageManager": "pnpm@9.6.0",
+  "version": "0.0.0-alpha.1",
+  "description": "Selection library for Web Dom.",
+  "main": "./dist/selection.js",
+  "module": "./dist/selection.js",
+  "type": "module",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/selection.js",
+      "require": "./dist/selection.cjs",
+      "types": "./dist/types.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "selection",
+    "content selection",
+    "web selection",
+    "dom selection"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-runtime": "^7.24.7",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/runtime-corejs3": "^7.25.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "core-js": "^3.38.0",
+    "rollup": "^4.20.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-ts": "^3.4.5",
+    "tslib": "^2.6.3"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.20.3"
+  }
+}
