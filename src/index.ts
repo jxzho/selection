@@ -34,17 +34,12 @@ export const contentSelection = ({
   const deselect = () => {
     if (__selection__) {
       onDeselect?.(state)
+      clearState()
     }
-  }
-
-  const onSelectStart = () => {
-    deselect()
-    clearState()
   }
 
   const onScroll = () => {
     deselect()
-    clearState()
   }
 
   const onSelectEnd = () => {
@@ -114,6 +109,13 @@ export const contentSelection = ({
     onSelect?.(state)
   }
 
+  const onSelectChange = () => {
+    const currentSelection = document.getSelection()
+    if (__isDeSelect__(currentSelection)) {
+      deselect()
+    }
+  }
+
   ts.on = () => {
     if (!document) {
       throw new Error('Need Dom Mounted to use `.on`.')
@@ -122,7 +124,7 @@ export const contentSelection = ({
     __eleLocate__ = document.createElement('i')
     __eleLocate__.style.visibility = 'hidden'
 
-    document.addEventListener('selectstart', onSelectStart)
+    document.addEventListener('selectionchange', onSelectChange)
     document.addEventListener('mouseup', onSelectEnd)
     
     if (scrollDetect) {
@@ -131,12 +133,16 @@ export const contentSelection = ({
   }
 
   ts.off = () => {
-    document.removeEventListener('selectstart', onSelectStart)
+    document.addEventListener('selectionchange', onSelectChange)
     document.removeEventListener('mouseup', onSelectEnd)
     document.addEventListener('scroll', onScroll)
   }
 
   return ts
+}
+
+function __isDeSelect__ (s: Selection | null) {
+  return !s || !s.rangeCount || s.type !== 'Range'
 }
 
 function __isBackwards__ ({ anchorNode, anchorOffset, focusNode, focusOffset }: Selection) {
