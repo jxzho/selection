@@ -23,7 +23,7 @@ export const contentSelection = ({
 
   const clearState = () => {
     document.getSelection()?.removeAllRanges()
-    state.isBackward = true
+    state.isBackward = undefined
     state.startRect = null
     state.endRect = null
     state.locateRect = null
