@@ -22,7 +22,6 @@ export const contentSelection = ({
   let __eleLocate__: null | HTMLElement
 
   const clearState = () => {
-    document.getSelection()?.removeAllRanges()
     state.isBackward = undefined
     state.startRect = null
     state.endRect = null
@@ -33,7 +32,6 @@ export const contentSelection = ({
 
   const deselect = () => {
     if (__selection__) {
-      onDeselect?.(state)
       clearState()
     }
   }
@@ -43,8 +41,8 @@ export const contentSelection = ({
   }
 
   const onSelectEnd = () => {
-    const selection = document.getSelection()
-    
+    const selection = getSelection()
+
     /** No Selection */
     if (!selection || selection?.isCollapsed || selection.rangeCount <= 0 || selection.type !== 'Range') {
       return
@@ -110,8 +108,7 @@ export const contentSelection = ({
   }
 
   const onSelectChange = () => {
-    const currentSelection = document.getSelection()
-    if (__isDeSelect__(currentSelection)) {
+    if (__isUnSelected__(getSelection())) {
       deselect()
     }
   }
@@ -133,15 +130,15 @@ export const contentSelection = ({
   }
 
   ts.off = () => {
-    document.addEventListener('selectionchange', onSelectChange)
+    document.removeEventListener('selectionchange', onSelectChange)
     document.removeEventListener('mouseup', onSelectEnd)
-    document.addEventListener('scroll', onScroll)
+    document.removeEventListener('scroll', onScroll)
   }
 
   return ts
 }
 
-function __isDeSelect__ (s: Selection | null) {
+function __isUnSelected__ (s: Selection | null) {
   return !s || !s.rangeCount || s.type !== 'Range'
 }
 
@@ -153,4 +150,8 @@ function __isBackwards__ ({ anchorNode, anchorOffset, focusNode, focusOffset }: 
   let backwards = range.collapsed
   range.detach()
   return backwards
+}
+
+function getSelection () {
+  return document.getSelection() || null
 }
