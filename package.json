@@ -2,7 +2,7 @@
   "name": "@rjdev/selection",
   "author": "Russell Xio <junxio220@gmail.com>",
   "packageManager": "pnpm@9.6.0",
-  "version": "0.0.0-alpha.1.1",
+  "version": "0.0.0-alpha.1.2",
   "description": "Lightweight and efficient content selection utility for web applications",
   "main": "./dist/selection.js",
   "module": "./dist/selection.js",
