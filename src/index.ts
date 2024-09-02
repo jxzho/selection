@@ -32,6 +32,7 @@ export const contentSelection = ({
 
   const deselect = () => {
     if (__selection__) {
+      onDeselect?.(state)
       clearState()
     }
   }
