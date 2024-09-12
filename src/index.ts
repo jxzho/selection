@@ -139,8 +139,8 @@ export const contentSelection = ({
   return ts
 }
 
-function __isUnSelected__ (s: Selection | null) {
-  return !s || !s.rangeCount || s.type !== 'Range'
+function __isUnSelected__(s: Selection | null) {
+  return !s?.rangeCount || s.type !== 'Range'
 }
 
 function __isBackwards__ ({ anchorNode, anchorOffset, focusNode, focusOffset }: Selection) {
